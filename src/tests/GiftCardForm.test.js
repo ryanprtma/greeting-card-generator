@@ -1,5 +1,5 @@
 import { render, screen, fireEvent} from "@testing-library/react";
-import GiftCardForm from "./GiftCardForm";
+import GiftCardForm from "../Components/GiftCardForm";
 import userEvent from "@testing-library/user-event";
 
 jest.mock("react-dropzone", () => ({
