@@ -1,70 +1,109 @@
-# Getting Started with Create React App
+# 🎁 Greeting Card Form
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Greeting Card Form adalah aplikasi React yang memungkinkan pengguna membuat dan mengunduh kartu ucapan dengan teks khusus serta gambar latar belakang yang dipilih.
 
-## Available Scripts
+## 🚀 Fitur
+- **Unggah Gambar**: Pilih gambar untuk digunakan sebagai latar belakang kartu ucapan.
+- **Personalisasi Teks**: Tambahkan teks `Dear`, `Message`, dan `From` sesuai keinginan.
+- **Pratinjau Kartu**: Menampilkan kartu ucapan dalam format canvas.
+- **Unduh sebagai PNG**: Simpan hasil kartu ucapan sebagai gambar PNG.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 📦 **Instalasi & Menjalankan Aplikasi**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### **1. Clone Repository**
+```sh
+git clone https://github.com/ryanprtma/greeting-card-generator.git
+cd greeting-card-generator
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### **2. Instal Dependensi**
+```sh
+npm install
+```
+atau menggunakan Yarn:
+```sh
+yarn install
+```
 
-### `npm test`
+### **3. Jalankan Aplikasi**
+```sh
+npm start
+```
+atau:
+```sh
+yarn start
+```
+Aplikasi akan berjalan di **http://localhost:3000**.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## ✅ **Menjalankan Unit Test**
+Gunakan perintah berikut untuk menjalankan pengujian unit:
+```sh
+npm test a
+```
+atau:
+```sh
+yarn test a
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🔧 **Struktur Proyek**
+```
+greeting-card-generator/
+│── src/
+│   ├── components/
+│   │   ├── GiftCardForm.js  # Komponen utama formulir kartu ucapan
+│   ├── tests/
+│   │   ├── GiftCardForm.test.js  # Unit test untuk GiftCardForm
+│   ├── assets/
+│   ├── App.js
+│   ├── index.js
+│── public/
+│── package.json
+│── README.md
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 🛠 **Teknologi yang Digunakan**
+- **React.js** - Library UI utama.
+- **react-dropzone** - Untuk menangani unggahan gambar.
+- **Jest & React Testing Library** - Untuk unit testing.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📜 **Unit Test: GiftCardForm.test.js**
+Berikut adalah contoh pengujian unit untuk komponen **GiftCardForm**:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```javascript
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import GiftCardForm from "../components/GiftCardForm";
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+test("renders Gift Card form fields", () => {
+    render(<GiftCardForm />);
 
-## Learn More
+    expect(screen.getByLabelText(/Dear/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Message/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/From/i)).toBeInTheDocument();
+    expect(screen.getByText(/File Upload/i)).toBeInTheDocument();
+});
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+test("allows user to upload an image", async () => {
+    render(<GiftCardForm />);
+    
+    const fileInput = screen.getByTestId("file-input");
+    const file = new File(["hello"], "test-image.png", { type: "image/png" });
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    await userEvent.upload(fileInput, file);
 
-### Code Splitting
+    expect(fileInput.files[0]).toBe(file);
+    expect(fileInput.files).toHaveLength(1);
+});
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
