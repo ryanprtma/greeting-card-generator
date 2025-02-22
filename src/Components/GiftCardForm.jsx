@@ -81,17 +81,23 @@ export default function GiftCardForm() {
             />
 
             {/* File Upload */}
-            <label style={{ fontWeight: "bold", display: "block", marginBottom: "8px", textAlign: "left" }}>File Upload</label>
+            <label htmlFor="file-upload" style={{ fontWeight: "bold", display: "block", marginBottom: "8px", textAlign: "left" }}>File Upload</label>
             <div {...getRootProps()} style={{ border: "2px dashed #ccc", padding: "20px", textAlign: "center", marginBottom: "24px", cursor: "pointer" }}>
-                <input {...getInputProps()} />
+                <input
+                    id="file-upload"
+                    name="file-upload"
+                    type="file"
+                    {...getInputProps()}
+                />
                 <p>Drag and drop files here or click to browse</p>
             </div>
 
             {/* Input Fields */}
             <div style={{ display: "flex", flexDirection: "column", gap: "40px", flexGrow: 1 }}>
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "12px", width: "100%" }}>
-                    <label style={{ fontWeight: "bold" }}>Dear</label>
+                    <label htmlFor="dear" style={{ fontWeight: "bold" }}>Dear</label>
                     <input
+                        id="dear"
                         type="text"
                         name="dear"
                         value={formData.dear}
@@ -100,8 +106,9 @@ export default function GiftCardForm() {
                     />
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "12px", width: "100%" }}>
-                    <label style={{ fontWeight: "bold" }}>Message</label>
+                    <label htmlFor="message" style={{ fontWeight: "bold" }}>Message</label>
                     <input
+                        id="message"
                         type="text"
                         name="message"
                         value={formData.message}
@@ -110,8 +117,9 @@ export default function GiftCardForm() {
                     />
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "12px", width: "100%" }}>
-                    <label style={{ fontWeight: "bold" }}>From</label>
+                    <label htmlFor="from" style={{ fontWeight: "bold" }}>From</label>
                     <input
+                        id="from"
                         type="text"
                         name="from"
                         value={formData.from}
